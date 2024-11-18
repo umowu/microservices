@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h1>Welcome, <span th:text="${user.username}"></span>!</h1>
+
+<div th:if="${user != null}">
+    <p><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+    <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+
+    <p><strong>Roles:</strong>
+        <span th:each="role, iterStat : ${user.role}">
+            <span th:text="${role.name}"></span>
+            <span th:if="${!iterStat.last}">, </span>
+        </span>
+    </p>
+</div>
+<div th:if="${user == null}">
+    <p>User not found</p>
+</div>
+
+<a href="/logout">Exit</a>
+</body>
+</html>
